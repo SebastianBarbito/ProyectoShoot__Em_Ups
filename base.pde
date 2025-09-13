@@ -1,1 +1,2 @@
 // estructura base
+void nuevaFuncion(){}
