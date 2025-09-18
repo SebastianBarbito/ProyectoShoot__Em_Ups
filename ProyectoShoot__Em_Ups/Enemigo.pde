@@ -1,10 +1,11 @@
 // Clase Enemigo
 class Enemigo extends GameObject {
   private float velocidad;
-  
+  private PImage sprite;
   Enemigo(PVector posicion, PVector tamanio, float velocidad) {
     super(posicion, tamanio);
     this.velocidad = velocidad;
+    this.sprite = loadImage("SpriteEnemigo.png");
   }
   
   void actualizar() {
@@ -13,7 +14,11 @@ class Enemigo extends GameObject {
   
  // metodo que dibuja al enemigo
   void dibujar() {
-    fill(#CE150F);
-    rect(posicion.x, posicion.y, tamanio.x, tamanio.y);
+    if (sprite != null) {
+      image(sprite, posicion.x, posicion.y, tamanio.x, tamanio.y);
+    } else {
+      fill(255, 0, 0);
+      rect(posicion.x, posicion.y, tamanio.x, tamanio.y);
+    }
   }
 }

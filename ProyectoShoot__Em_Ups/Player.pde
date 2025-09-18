@@ -3,11 +3,14 @@
 class Player extends GameObject {
   private float velocidad;
   private ArrayList<Bala> balas;
+  private PImage sprite;
   
   Player(PVector posicion, PVector tamanio, float velocidad) {
     super(posicion, tamanio);
     this.velocidad = velocidad;
     this.balas = new ArrayList<Bala>();
+    this.sprite = loadImage("spritePersonaje.png");
+    
   }
   // crea un metodo para que el jugador se pueda mover con las teclas asignadas
   void mover() {
@@ -41,11 +44,16 @@ class Player extends GameObject {
   }
   
   //metodo para llamar y dibujar la clase bala
-  void dibujar() {
-    fill(#21AD39);
-    rect(posicion.x, posicion.y, tamanio.x, tamanio.y);
+ void dibujar() {
+    if (sprite != null) {
+      image(sprite, posicion.x, posicion.y, tamanio.x, tamanio.y);
+    } else {
+      fill(0, 0, 255);
+      rect(posicion.x, posicion.y, tamanio.x, tamanio.y);
+    }
     for (Bala b : balas) {
       b.dibujar();
     }
   }
+
 }
